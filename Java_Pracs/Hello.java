@@ -141,6 +141,16 @@ class Hello {
         mob1.show();
         mob2.show();
 
+        // JAVA WRAPPER CLASSES
+        int num = 7;
+        Integer number = num; // boxing - process of wrapping the primitive variable into a reference variable
+                              // (references to an object)
+        System.out.println(number);
+
+        String stri = "6";
+        number = Integer.parseInt(stri) * 4;
+        System.out.println(number);
+
     }
 }
 
