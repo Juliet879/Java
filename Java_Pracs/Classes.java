@@ -5,13 +5,28 @@ public class Classes {
         mountainBike.drive();
 
         // instantiating inner classes
-
         A obj = new A();
         obj.age = 45;
 
         A.B obj2 = obj.new B();
         obj2.reply();
 
+        // Abstract and Anonymous inner class
+        // Since Person is an abstract class and an object cannot be instanciated
+        // directly we can define the class anonymously inside the {}
+        Person person1 = new Person() {
+
+            @Override
+            public void walk() {
+                // System.out.println("Walking Fast");
+            }
+        };
+
+        // Enum Classes
+
+        for (Laptop lap : Laptop.values()) {
+            System.out.println(lap + " : " + lap.getPrice());
+        }
     }
 }
 
@@ -82,5 +97,33 @@ class A {
             System.out.println("Yes you parent");
         }
 
+    }
+}
+
+// Abstract and Anonymous inner class
+abstract class Person {
+    abstract public void walk();
+}
+
+// Enum Classes
+enum Laptop {
+    MacBook(2500), ThinkPad(1800), Surface(2300), HP(1200), Dell;
+
+    private int price;
+
+    private Laptop() {
+        this.price = 1000;
+    }
+
+    private Laptop(int price) {
+        this.price = price;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
