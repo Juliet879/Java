@@ -23,10 +23,13 @@ public class Classes {
         };
 
         // Enum Classes
-
         for (Laptop lap : Laptop.values()) {
-            System.out.println(lap + " : " + lap.getPrice());
+            // System.out.println(lap + " : " + lap.getPrice());
         }
+
+        // Lambda functions
+        X obj4 = (i, j) -> i + j;
+        System.out.println(obj4.add(4, 19));
     }
 }
 
@@ -126,4 +129,10 @@ enum Laptop {
     public void setPrice(int price) {
         this.price = price;
     }
+}
+
+// Functional interface also SAM(Single Abstract Method) takes only one method
+@FunctionalInterface
+interface X {
+    int add(int i, int j);
 }
