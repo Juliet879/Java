@@ -1,5 +1,5 @@
 public class Exceptions {
-    public static void main(String a[]) {
+    public static void main(String a[]) throws InterruptedException {
         int num = 18;
         int num2 = 0;
 
@@ -17,24 +17,17 @@ public class Exceptions {
         // where you have a child class that needs to EXTEND a parent so we IMPLEMENT
         // Runnable since its an inteface
 
+        Counter count = new Counter();
+
         Runnable obj1 = () -> {
-            for (int i = 0; i <= 5; i++) {
-                System.out.println("Hi");
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            for (int i = 0; i < 1000; i++) {
+                count.increment();
             }
         };
 
         Runnable obj2 = () -> {
-            for (int i = 0; i <= 5; i++)
-                System.out.println("Hello");
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            for (int i = 0; i < 1000; i++) {
+                count.increment();
             }
         };
 
@@ -44,5 +37,21 @@ public class Exceptions {
         t1.start();
         t2.start();
 
+        t1.join(); // Used to make one thread wait for the completion of another thread
+        t2.join();
+
+        System.out.println(count.counter);
+
+    }
+}
+
+class Counter {
+    int counter;
+
+    public synchronized void increment() {
+        // the synchronized means that in an instance where two threads have these
+        // method running, oly only thread will execute it the method at a time, kinda
+        // locks
+        counter++;
     }
 }
